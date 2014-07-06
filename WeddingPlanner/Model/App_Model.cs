@@ -19,5 +19,16 @@ namespace WeddingPlanner.Model
             this.Invoker = _invoker;
             this.Security = _security;
         }
+
+        public void LoadSides()
+        {
+            ViewModel.SidesList.Add("Ridma");
+            ViewModel.SidesList.Add("Shehan");
+        }
+
+        public void LoadEmptyRows()
+        {
+            ViewModel.ExpensesList.Add(new Contracts.Expense());
+        }
     }
 }

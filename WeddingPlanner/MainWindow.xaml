@@ -2,15 +2,68 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Wedding Planner" Height="350" Width="525" ShowIconOnTitleBar="True" SaveWindowPosition="True">
+        Title="Wedding Planner" Height="428.947" Width="646.053" ShowIconOnTitleBar="True" SaveWindowPosition="True" WindowStartupLocation="CenterScreen" Icon="Images/cake.ico" BorderThickness="1" BorderBrush="#FF5140FF">
     <controls:MetroWindow.RightWindowCommands>
         <controls:WindowCommands>
-            <Button Content="settings" />
-            <Button Content="settings" />
+            <Button>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="30" Height="30" Source="Images/rimi.png" Stretch="UniformToFill" />
+                    <TextBlock Margin="4 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="Ridma" />
+                </StackPanel>
+            </Button>
+            <Button>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="30" Height="30" Source="Images/shehan.jpg" Stretch="UniformToFill" />
+                    <TextBlock Margin="4 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="Shehan" />
+                </StackPanel>
+            </Button>
         </controls:WindowCommands>
     </controls:MetroWindow.RightWindowCommands>
 
     <Grid x:Name="LayoutRoot">
-        
+        <TabControl Margin="10">
+            <TabItem Header="Dashboard">
+                <Grid Background="White">
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Expenses">
+                <Grid Background="White">
+                    <Label Content="Total Cost :" Margin="0,0,188,0" FontSize="14" FontWeight="Bold" Height="31" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="84"/>
+                    <DataGrid AutoGenerateColumns="False" Margin="10,0,10,36" ItemsSource="{Binding Path=ExpensesList,Mode=TwoWay}" Style="{StaticResource AzureDataGrid}" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Path=Item,Mode=TwoWay}" ClipboardContentBinding="{x:Null}" Header="Item" Width="*"/>
+                            <controls:DataGridNumericUpDownColumn Binding="{Binding Path=Amount,Mode=TwoWay}" Header="Amount" Width="*" Minimum="0" StringFormat="C" />
+                            <DataGridTextColumn Binding="{Binding Path=Notes,Mode=TwoWay}" ClipboardContentBinding="{x:Null}" Header="Notes" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBox IsReadOnly="True" Height="23" Margin="0,0,3,2" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="185"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Guests">
+                <Grid Background="White">
+                    <DataGrid Margin="10,46,10,36">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Name"/>
+                            <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Gender"/>
+                            <DataGridCheckBoxColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Wedding"/>
+                            <DataGridCheckBoxColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="HComing"/>
+                            <DataGridTextColumn Width="90" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Telephone"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label Content="Side :" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" Width="48"/>
+                    <ComboBox ItemsSource="{Binding Path=SidesList,Mode=OneTime}" HorizontalAlignment="Left" Margin="57,10,0,0" VerticalAlignment="Top" Width="229"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Reports">
+                <Grid Background="White">
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <controls:ProgressRing IsActive="True" />
     </Grid>
 </controls:MetroWindow>
